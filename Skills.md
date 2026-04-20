@@ -5,7 +5,7 @@
 * **Name:** Manas Malviya
 * **Domain:** Computer Science & Data Science
 * **Current Status:** 3rd Year Undergraduate (BMS College of Engineering)
-* **CGPA:** 9.77
+* **CGPA:** 9.69
 * **Focus Areas:** Machine Learning, Deep Learning, Data Analysis, Software Development
 * **Primary Languages:** Python, C++, Java
 * **Core Strengths:** Problem Solving, Data Structures & Algorithms, ML/DL Model Development
@@ -69,7 +69,7 @@
 * Build models using:
 
   * ANN
-  * CNN (basic level)
+  * CNN 
 * Use frameworks:
 
   * TensorFlow / Keras
