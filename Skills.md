@@ -6,7 +6,7 @@
 * **Domain:** Computer Science & Data Science
 * **Current Status:** 3rd Year Undergraduate (BMS College of Engineering)
 * **CGPA:** 9.69
-* **Focus Areas:** Machine Learning, Deep Learning, Data Analysis, Software Development
+* **Focus Areas:** Machine Learning, Deep Learning, Data Analysis, Artificial Intelligence, Software Development
 * **Primary Languages:** Python, C++, Java
 * **Core Strengths:** Problem Solving, Data Structures & Algorithms, ML/DL Model Development
 
