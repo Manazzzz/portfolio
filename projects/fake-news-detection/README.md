@@ -35,3 +35,7 @@ Built a machine learning model to classify news articles as real or fake using N
 
 ## 📊 Output
 (Add confusion matrix / accuracy screenshot here)
+
+## Dataset
+
+Due to size limitations, the dataset is not included in this repository.
