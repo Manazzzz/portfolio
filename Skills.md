@@ -301,6 +301,107 @@ class GRUCell:
 
 ---
 
+---
+
+## 🚀 Model Deployment (TensorFlow)
+
+### 🔹 Overview
+
+Deploy trained models to production using:
+
+* TensorFlow SavedModel
+* TensorFlow Lite (mobile/edge)
+* Quantization techniques
+* Serving infrastructure (REST / Docker)
+
+---
+
+### 🔹 SavedModel Export
+
+```python
+model.save('saved_model')
+loaded_model = tf.keras.models.load_model('saved_model')
+predictions = loaded_model.predict(test_data)
+```
+
+---
+
+### 🔹 TensorFlow Lite Conversion
+
+```python
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+tflite_model = converter.convert()
+
+with open('model.tflite', 'wb') as f:
+    f.write(tflite_model)
+```
+
+---
+
+### 🔹 Quantization (Model Optimization)
+
+```python
+converter = tf.lite.TFLiteConverter.from_saved_model('saved_model')
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+tflite_model = converter.convert()
+```
+
+---
+
+### 🔹 TFLite Inference
+
+```python
+interpreter = tf.lite.Interpreter(model_path='model.tflite')
+interpreter.allocate_tensors()
+```
+
+---
+
+### 🔹 TensorFlow Serving (Production)
+
+```bash
+docker run -p 8501:8501 \
+  --mount type=bind,source=/model,target=/models/my_model \
+  -e MODEL_NAME=my_model \
+  tensorflow/serving
+```
+
+---
+
+### 🔹 When to Use
+
+* Deploy ML models to production
+* Mobile / Edge AI applications
+* Optimize model size & latency
+* Build ML APIs
+
+---
+
+### ⚠️ Best Practices
+
+* Validate converted models
+* Use SavedModel format
+* Apply quantization carefully
+* Test on target device
+* Version your models
+
+---
+
+### ❗ Common Pitfalls
+
+* Not validating TFLite outputs
+* Over-quantization → accuracy drop
+* Ignoring device constraints
+* No model versioning
+* Wrong input/output shapes
+
+---
+
+*(Full deployment pipelines and advanced optimizations implemented in project references)* 
+
+---
+
+
 ## ⚡ When to Use Deep Learning
 
 * Image classification (CNN)
