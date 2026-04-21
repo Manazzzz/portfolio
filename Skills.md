@@ -368,6 +368,113 @@ docker run -p 8501:8501 \
 
 ---
 
+---
+
+## 🛠️ TensorFlow Debugging & Optimization
+
+### 🔹 Overview
+
+Systematic debugging of deep learning models:
+
+* Shape mismatches
+* Memory (OOM) issues
+* NaN/Inf losses
+* Gradient problems
+* GPU configuration errors
+
+---
+
+### 🔹 Shape Debugging
+
+```python id="7yqk9f"
+print(x.shape)
+tf.debugging.assert_shapes([(x, ('batch', 'features'))])
+```
+
+---
+
+### 🔹 Memory (OOM) Handling
+
+```python id="a9r5kn"
+gpus = tf.config.list_physical_devices('GPU')
+for gpu in gpus:
+    tf.config.experimental.set_memory_growth(gpu, True)
+```
+
+---
+
+### 🔹 NaN / Loss Issues
+
+```python id="9g5dbe"
+tf.debugging.check_numerics(tensor, "NaN detected")
+
+optimizer = tf.keras.optimizers.Adam(learning_rate=1e-5)
+```
+
+---
+
+### 🔹 Gradient Debugging
+
+```python id="2t6k2g"
+with tf.GradientTape() as tape:
+    loss = loss_fn(y, model(x))
+
+grads = tape.gradient(loss, model.trainable_variables)
+```
+
+---
+
+### 🔹 TensorBoard Debugging
+
+```python id="a7c2d1"
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir='./logs')
+model.fit(x_train, y_train, callbacks=[tensorboard_callback])
+```
+
+---
+
+### 🔹 Data Pipeline Optimization
+
+```python id="w6n1pr"
+dataset = dataset.cache().shuffle(1000).batch(32).prefetch(tf.data.AUTOTUNE)
+```
+
+---
+
+### 🔹 When to Use
+
+* Debug training failures
+* Optimize model performance
+* Fix data pipeline bottlenecks
+* Improve training stability
+
+---
+
+### ⚠️ Best Practices
+
+* Validate tensor shapes early
+* Monitor gradients and loss
+* Use TensorBoard for debugging
+* Normalize inputs
+* Profile performance
+
+---
+
+### ❗ Common Issues
+
+* Shape mismatch errors
+* NaN loss (high learning rate)
+* GPU not detected
+* Data pipeline bottlenecks
+* Vanishing/exploding gradients
+
+---
+
+*(Full debugging workflows and advanced diagnostics included in reference)* 
+
+---
+
+
 ### 🔹 When to Use
 
 * Deploy ML models to production
