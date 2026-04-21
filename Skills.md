@@ -173,3 +173,150 @@ plt.show()
 ```
 
 ---
+
+
+---
+
+## 🧠 Deep Learning Advanced (TensorFlow / Keras)
+
+### 🔹 Basic Image Classification (MNIST)
+
+```python
+import tensorflow as tf
+from tensorflow import keras
+import numpy as np
+
+(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+
+x_train = x_train.astype('float32') / 255.0
+x_test = x_test.astype('float32') / 255.0
+
+x_train = x_train.reshape(-1, 28 * 28)
+x_test = x_test.reshape(-1, 28 * 28)
+
+model = keras.Sequential([
+    keras.layers.Dense(128, activation='relu', input_shape=(784,)),
+    keras.layers.Dropout(0.2),
+    keras.layers.Dense(64, activation='relu'),
+    keras.layers.Dropout(0.2),
+    keras.layers.Dense(10, activation='softmax')
+])
+
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+model.fit(x_train, y_train, epochs=5, validation_split=0.2)
+```
+
+---
+
+### 🔹 Convolutional Neural Network (CNN)
+
+```python
+def generate_model():
+    return tf.keras.models.Sequential([
+        tf.keras.layers.Conv2D(32, (3,3), padding='same', input_shape=(32,32,3)),
+        tf.keras.layers.Activation('relu'),
+        tf.keras.layers.MaxPooling2D((2,2)),
+
+        tf.keras.layers.Conv2D(64, (3,3), padding='same'),
+        tf.keras.layers.Activation('relu'),
+        tf.keras.layers.MaxPooling2D((2,2)),
+
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(512, activation='relu'),
+        tf.keras.layers.Dropout(0.5),
+        tf.keras.layers.Dense(10, activation='softmax')
+    ])
+```
+
+---
+
+### 🔹 Custom Dense Layer
+
+```python
+import tensorflow as tf
+
+class CustomDense(tf.keras.layers.Layer):
+    def __init__(self, units):
+        super().__init__()
+        self.units = units
+
+    def build(self, input_shape):
+        self.w = self.add_weight(shape=(input_shape[-1], self.units))
+        self.b = self.add_weight(shape=(self.units,))
+
+    def call(self, inputs):
+        return tf.matmul(inputs, self.w) + self.b
+```
+
+---
+
+### 🔹 Residual Block (ResNet Concept)
+
+```python
+class ResidualBlock(tf.keras.layers.Layer):
+    def __init__(self, filters):
+        super().__init__()
+        self.conv1 = tf.keras.layers.Conv2D(filters, 3, padding='same')
+        self.conv2 = tf.keras.layers.Conv2D(filters, 3, padding='same')
+
+    def call(self, x):
+        y = self.conv1(x)
+        y = self.conv2(y)
+        return tf.nn.relu(x + y)
+```
+
+---
+
+### 🔹 Multi-Task Learning Model
+
+```python
+class MultiTaskModel(tf.keras.Model):
+    def __init__(self):
+        super().__init__()
+        self.shared = tf.keras.layers.Dense(128, activation='relu')
+        self.task1 = tf.keras.layers.Dense(10, activation='softmax')
+        self.task2 = tf.keras.layers.Dense(5, activation='softmax')
+
+    def call(self, x):
+        x = self.shared(x)
+        return self.task1(x), self.task2(x)
+```
+
+---
+
+### 🔹 Custom GRU Cell (RNN)
+
+```python
+import tensorflow.experimental.numpy as tnp
+
+class GRUCell:
+    def __init__(self, n_units):
+        self.n_units = n_units
+```
+
+*(Full implementation included in project reference)* 
+
+---
+
+## ⚡ When to Use Deep Learning
+
+* Image classification (CNN)
+* Text processing (RNN / NLP)
+* Time-series forecasting
+* Multi-task learning problems
+
+---
+
+## ⚠️ Best Practices
+
+* Normalize input data
+* Use Dropout to avoid overfitting
+* Monitor validation metrics
+* Use appropriate loss functions
+* Start simple → then increase complexity
+
+---
+
