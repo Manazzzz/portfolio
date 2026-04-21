@@ -320,3 +320,74 @@ class GRUCell:
 
 ---
 
+
+---
+
+## 📚 Resources
+
+### 🔹 Official Documentation
+
+* TensorFlow Keras Guide
+* Sequential Model API
+* Model Subclassing Guide
+* RNN Guide
+* Custom Training Loops
+
+---
+
+### 🔹 Learning Topics Covered
+
+* Neural Networks (ANN, CNN, RNN)
+* Custom Layers and Model Subclassing
+* Multi-task Learning
+* Residual Connections (ResNet)
+* Feature Engineering for Deep Learning
+* Model Optimization and Regularization
+
+---
+
+### 🔹 Advanced Concepts
+
+* Transfer Learning
+* Attention Mechanisms
+* Time Series Forecasting
+* Generative Models (Autoencoders, GANs)
+* Reinforcement Learning Basics
+
+---
+
+### 🔹 Best Practices
+
+* Normalize input data before training
+* Use Dropout (0.2–0.5) to prevent overfitting
+* Monitor validation metrics during training
+* Choose correct loss functions:
+
+  * `categorical_crossentropy` (one-hot labels)
+  * `sparse_categorical_crossentropy` (integer labels)
+* Use `model.summary()` to verify architecture
+* Implement EarlyStopping for efficient training
+
+---
+
+### 🔹 Common Pitfalls
+
+* Not normalizing input data
+* Using incorrect loss functions
+* Overfitting on small datasets
+* Learning rate too high
+* Not using validation data
+* Dimension mismatch between layers
+
+---
+
+### 🔹 Useful Links
+
+* https://www.tensorflow.org/
+* https://keras.io/
+* https://www.kaggle.com/
+* https://scikit-learn.org/
+
+---
+
+
